@@ -5,20 +5,22 @@ require_once('php/querys.php');
 $title = "Of comeriales";
 
 ?>
-
+<!DOCTYPE html>
 <html on xmlns="http://www.w3.org/1999/xhtml">
 <head>
-<link href="css/style.css" type="text/css" rel="stylesheet" />
+<link href="css/bootstrap.css" type="text/css" rel="stylesheet" />
 <script type="text/javascript" src="js/jquery-1.7.2.min.js"></script>
 <script type="text/javascript" src="js/scripts.js"></script>
+<script type="text/javascript" src="js/jquery-ui-1.8.20.custom.min.js"></script>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title><?php echo $title ?></title>
 </head>
 <body onload="IniciarCrono()">
 <center>
 
 <form name="crono" method="post">
-<input id="reloj" type="text" size="8" name="display" value="00:00:0"> 
+<input class="span2 text-center" id="reloj" type="text" size="8" name="display" value="00:00:0"> 
 
 <Table align="center">
 
@@ -126,7 +128,7 @@ conservarvalor ('comentarios','');
 </textarea></td>
 </tr>	
 
-</table><input id="submit" value="Enviar" type="submit"><br>
+</table><input class="btn btn-primary" id="submit" value="Enviar" type="submit"><br>
 
 </form>
 

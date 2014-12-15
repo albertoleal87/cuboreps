@@ -10,18 +10,13 @@ if($rfc == "AAA010101AAA"){$rfc = "";}
 
 if (isset($rfc) && !empty($rfc))
 {
-$mysql_connect = mysql_connect("", "", "") or die (mysql_error());
-mysql_select_db("", $mysql_connect) or die (mysql_error());
+require_once('mysqlconnect.php');
 $query = "SELECT razon_social , producto , plan , software , telefono , usuario , correo FROM empresas WHERE rfc = '$rfc' ";
 $mysql_query = mysql_query($query) or die (mysql_error());
 $row = mysql_fetch_assoc($mysql_query);
+$fromrfc['fromrfc'] = $row;
 mysql_close($mysql_connect);
-
-$fromrfc['fromrfc'] = $row ;
-
 print json_encode($fromrfc);
 }
-
-
 
 ?>

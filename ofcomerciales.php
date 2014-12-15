@@ -11,21 +11,44 @@ require_once('header.php');
 
 <?php
 	
-@$ipuser = $_SERVER['REMOTE_ADDR'];
+@$ip = $_SERVER['REMOTE_ADDR'];
 @$date1 = $_POST['date1'];
 @$date2 = $_POST['date2'];
+@$criterio = $_POST['criterio'];
+@$tipocriterio = $_POST['tipocriterio'];
 
-if(isset($date1) && isset($date2) && !empty($date1) && !empty($date2) && $date1 != 'fecha inicial' && $date2 != 'fecha final' )
+if(empty($date1))
 {
-require_once('php/querys.php');	
-reporteDinamico($repOfComerciales);	
-}
-else{
 @$date1 = date("Y-m-d");
+}
+
+if(empty($date2)) 
+{
 @$date2 = date("Y-m-d");
+}
+
+if(isset($criterio) && !empty($criterio) && isset($tipocriterio) && !empty($tipocriterio)) 
+{
+@$wherecriterio =  "&& ".$tipocriterio." LIKE '%$criterio%' "; 
+}
+
+else {
+@$wherecriterio = "";
+}
+
+if(  
+$_SERVER['SERVER_NAME'] == "localhost"
+)
+
+{$whereip = " ";}
+
+else 
+{
+$whereip = " && repofcomerciales.ip = '$ip' ";
+}
+
 require_once('php/querys.php');
 reporteDinamico($repOfComerciales);
-} 
 
 ?>
 </form>

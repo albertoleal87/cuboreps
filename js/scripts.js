@@ -83,7 +83,7 @@ function IniciarReloj12 () {
   
 window.onload = IniciarReloj12;  
 if (document.captureEvents) {           //N4 requiere invocar la funcion captureEvents  
-    document.captureEvents(Event.LOAD)  
+   // document.captureEvents(Event.LOAD)  
 }    
 
 
@@ -95,7 +95,7 @@ if (document.captureEvents) {           //N4 requiere invocar la funcion capture
     $('#date1').datepicker({
         showOn: 'focus',
         //buttonText: 'Selecciona una fecha',
-      //  buttonImage: 'css/calendar.png',
+      //buttonImage: 'css/calendar.png',
         buttonImageOnly: true,
         showButtonPanel: false,
     });
@@ -230,7 +230,17 @@ function exportar()
     {
         $("#datos_a_enviar").val( $("<div>").append( $("#Exportar_a_Excel").eq(0).clone()).html());
         $("#FormularioExportacion").submit();
-}
+};
+
+
+function exportarcsv() 
+    {
+        $("#query").val();
+        $("#FormularioExportacioncsv").submit();
+};
+
+
+
 
 function ajax1 ()
 {
@@ -294,9 +304,243 @@ else {$('#rowsoftware').hide() ;}
 function displaysoftware ()
 {
 valor = document.getElementById('producto').value  ;
-if (valor == "CF") {$('#rowsoftware').show() ;}
-else if (valor == "TF") {$('#rowsoftware').show() ;}
-else {$('#rowsoftware').hide() ;}
+if (valor == "CF") 
+  
+  {  $('#rowsoftware').show() ;}
+
+else if (valor == "TF") 
+  {  $('#rowsoftware').show() ;}
+
+else 
+  {  $('#rowsoftware').hide() ;}
 }
+
+function displayevento ()
+{
+
+evento = document.getElementById('evento').value  ;
+
+switch (evento)
+{
+
+case "TICKET":
+$('#rowticket').show() ;
+$('#row_status_ticket').show() ;
+$('#rowtelefono').hide() ;
+break;
+
+case "LLAMADA":
+$('#rowtelefono').show() ;
+$('#rowticket').hide() ;
+$('#row_status_ticket').hide() ;
+
+break;
+
+case "CHAT":
+$('#rowtelefono').hide() ;
+$('#rowticket').hide() ;
+$('#row_status_ticket').hide() ;
+ 
+  break;
+
+case "":
+$('#rowtelefono').hide() ;
+$('#rowticket').hide() ;
+$('#row_status_ticket').hide() ;
+  break;
+
+
+}
+
+
+}
+
+function displaytransferida ()
+{
+
+//nivel_atencion = document.getElementById('nivel_atencion').value  ;
+nivel_atencion = $('#nivel_atencion').val()  ;
+
+if(nivel_atencion == "SOPORTE PRIMER NIVEL")
+{
+$('#rowtransferida').hide() ; 
+}
+else if (nivel_atencion == "") 
+{
+$('#rowtransferida').hide() ; 
+}
+else if (nivel_atencion == "VENTAS PRIMER NIVEL") 
+{
+$('#rowtransferida').hide() ; 
+}
+else{
+$('#rowtransferida').show() ;
+}
+}
+
+
+function displaySoftwareVentas ()
+{
+
+
+evento = $('#evento').val()  ;
+if (evento == "LLAMADA")
+{
+
+valor = document.getElementById('producto').value  ;
+if (valor == "CF") 
+  {  
+    $('#rowsoftware').show() ;
+    $('#rowtransferida').show() ;
+  }
+
+else if (valor == "TF") 
+  {  $('#rowsoftware').show() ;
+     $('#rowtransferida').hide() ;
+  }
+
+else 
+  {  $('#rowsoftware').hide() ;
+     $('#rowtransferida').hide() ;
+  }
+}
+
+}
+
+function displayEventoVentas ()
+{
+
+evento = document.getElementById('evento').value  ;
+
+switch (evento)
+{
+
+case "TICKET":
+$('#rowticket').show() ;
+$('#row_status_ticket').show() ;
+$('#rowtelefono').hide() ;
+$('#row_tipo_compra').hide() ;
+$('#row_complemento').hide() ;
+$('#row_medio_contacto').hide() ;
+$('#row_motivo_compra').hide() ;
+$('#row_volumen_transacciones').hide() ;
+$('#row_cadena_comercial').hide() ;
+$('#rowasunto').show() ;
+$('#row_producto').show() ;
+$('#row_plan').show() ;
+break;
+
+case "LLAMADA":
+$('#rowtelefono').show() ;
+$('#rowticket').hide() ;
+$('#row_status_ticket').hide() ;
+$('#row_tipo_compra').show() ;
+$('#row_complemento').show() ;
+$('#row_medio_contacto').show() ;
+$('#row_motivo_compra').show() ;
+$('#row_volumen_transacciones').show() ;
+$('#row_cadena_comercial').show() ;
+$('#row_nivel_atencion').hide() ;
+$('#rowasunto').hide() ;
+$('#row_producto').hide() ;
+$('#row_plan').hide() ;
+
+row_producto
+break;
+
+case "CHAT":
+$('#rowtelefono').hide() ;
+$('#rowticket').hide() ;
+$('#row_status_ticket').hide() ;
+$('#row_tipo_compra').hide() ;
+$('#row_complemento').hide() ;
+$('#row_medio_contacto').hide() ;
+$('#row_motivo_compra').hide() ;
+$('#row_volumen_transacciones').hide() ;
+$('#row_cadena_comercial').hide() ;
+$('#rowasunto').show() ;
+$('#row_producto').show() ;
+$('#row_plan').show() ;
+ 
+  break;
+
+case "":
+$('#rowtelefono').hide() ;
+$('#rowticket').hide() ;
+$('#row_status_ticket').hide() ;
+$('#row_tipo_compra').hide() ;
+$('#row_complemento').hide() ;
+$('#row_medio_contacto').hide() ;
+$('#row_motivo_compra').hide() ;
+$('#row_volumen_transacciones').hide() ;
+$('#row_cadena_comercial').hide() ;
+$('#rowasunto').show() ;
+  break;
+
+
+}
+
+
+}
+
+function displayTransferidaVentas ()
+{
+nivel_atencion = $('#nivel_atencion').val()  ;
+
+if(nivel_atencion == "SOPORTE PRIMER NIVEL")
+{
+$('#rowtransferida').hide() ; 
+}
+else if (nivel_atencion == "") 
+{
+$('#rowtransferida').hide() ; 
+}
+else if (nivel_atencion == "VENTAS PRIMER NIVEL") 
+{
+$('#rowtransferida').hide() ; 
+}
+else{
+$('#rowtransferida').show() ;
+}
+}
+
+function displayProductoVentas ()
+{
+tipo_compra = $('#tipo_compra').val()  ;
+
+switch (tipo_compra)
+{
+
+case "1ª Compra":
+$('#row_producto').show() ;
+$('#row_plan').show() ;
+break;
+
+case "Renovación":
+$('#row_producto').show() ;
+$('#row_plan').show() ;
+break;
+
+case "Recurrente":
+$('#row_producto').hide() ;
+$('#row_plan').hide() ;
+break;
+
+case "":
+$('#row_producto').hide() ;
+$('#row_plan').hide() ;
+break;
+
+}
+
+}
+
+
+
+
+
+
+
+
 
 

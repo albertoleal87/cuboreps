@@ -43,13 +43,13 @@ $_SERVER['SERVER_NAME'] == "localhost"
 
 else 
 {
-$whereip = " && reporteglobal.ip = '$ip' ";
+$whereip = " && reporteglobalventas.ip = '$ip' ";
 }
 
 require_once('php/querys.php');
 
 
-reporteDinamico($reporteGlobal);
+reporteDinamico($reporteGlobalVentas);
 
 
 
@@ -59,7 +59,7 @@ reporteDinamico($reporteGlobal);
 
 
 <form action="php/ficherocsv.php" method="post" target="_blank" id="FormularioExportacioncsv">
-<input type="hidden" name="query" id="query" value="<?php echo "$reporteGlobal "; ?>" />
+<input type="hidden" name="query" id="query" value="<?php echo $reporteGlobalVentas; ?>" />
 </form
 
 </body>
