@@ -130,7 +130,7 @@ function InicializarCrono () {
     horas = 0
 
     //pone a cero los marcadores
-    document.crono.display.value = '00:00:0'
+    document.crono.display.value = '00:00:00'
     
 }
 
@@ -232,5 +232,71 @@ function exportar()
         $("#FormularioExportacion").submit();
 }
 
+function ajax1 ()
+{
+$.post("php/ajax1.php", $("#formregistro").serialize())
+.done(
+
+function(data) {
+
+if (document.getElementById('rfc').value == "") {$('#rfc').val(data['fromtkt'].rfc);}  
+if (document.getElementById('razon_social').value == "") {$('#razon_social').val(data['fromtkt'].razon_social);}  
+if (document.getElementById('usuario').value == "") {$('#usuario').val(data['fromtkt'].usuario);}
+if (document.getElementById('telefono').value == "") {$('#telefono').val(data['fromtkt'].telefono);}
+if (document.getElementById('correo').value == "") {$('#correo').val(data['fromtkt'].correo);}
+if (document.getElementById('software').value == "") {$('#software').val(data['fromtkt'].software);}
+if (document.getElementById('producto').value == "") {$('#producto').val(data['fromtkt'].producto);}
+if (document.getElementById('plan').value == "") {$('#plan').val(data['fromtkt'].plan);}
+if (document.getElementById('asunto').value == "") {$('#asunto').val(data['fromtkt'].asunto);}
+
+
+valor = document.getElementById('producto').value  ;
+
+if (valor == "CF") {$('#rowsoftware').show() ;}
+else if (valor == "TF") {$('#rowsoftware').show() ;}
+else {$('#rowsoftware').hide() ;}
+
+}
+
+)
+//.fail(function() { alert("error"); });
+};
+
+
+
+function ajax2 ()
+{
+$.post("php/ajax2.php", $("#formregistro").serialize())
+.done(
+
+function(data) {
+
+if (document.getElementById('razon_social').value == "") {$('#razon_social').val(data['fromrfc'].razon_social);}  
+if (document.getElementById('usuario').value == "") {$('#usuario').val(data['fromrfc'].usuario);}
+if (document.getElementById('telefono').value == "") {$('#telefono').val(data['fromrfc'].telefono);}
+if (document.getElementById('correo').value == "") {$('#correo').val(data['fromrfc'].correo);}
+if (document.getElementById('software').value == "") {$('#software').val(data['fromrfc'].software);}
+if (document.getElementById('producto').value == "") {$('#producto').val(data['fromrfc'].producto);}
+if (document.getElementById('plan').value == "") {$('#plan').val(data['fromrfc'].plan);}
+
+valor = document.getElementById('producto').value  ;
+
+if (valor == "CF") {$('#rowsoftware').show() ;}
+else if (valor == "TF") {$('#rowsoftware').show() ;}
+else {$('#rowsoftware').hide() ;}
+
+}
+
+)
+//.fail(function() { alert("error"); });
+};
+
+function displaysoftware ()
+{
+valor = document.getElementById('producto').value  ;
+if (valor == "CF") {$('#rowsoftware').show() ;}
+else if (valor == "TF") {$('#rowsoftware').show() ;}
+else {$('#rowsoftware').hide() ;}
+}
 
 

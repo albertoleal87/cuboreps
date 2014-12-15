@@ -1,87 +1,12 @@
 <?php
-
+$title = "Gratuitos";
 date_default_timezone_set("America/Monterrey");
+require_once('php/funciones.php');
+require_once('header.php');
 
 ?>
 
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head>
-<link href="css/style.css" type="text/css" rel="stylesheet" />
-<script type="text/javascript" src="js/jquery-1.7.2.min.js"></script>
-<script type="text/javascript" src="js/scripts.js"></script>
 
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<!--
-<meta http-equiv="refresh" content="5" />
--->
-<title>Gratuitos</title>
-</head>
-
-<body>
-
-
-<center>
-<form name="reloj12">
-<div align="right">
-<input id="reloj" align="right" type="text" size="11" name="digitos"><br>
-</div>
-</form>
-
-<!--
-<fieldset id="fiel">
-<input type="button" id="submit" value="Nuevo Chat" value="Crear" onclick="crear(this) ;" />
-<input type="button"  id="submit" value="Nueva Llamada" onClick="window.open('php/formulario2.php', this.target, 'width=450,height=550'); return false;">
-<input type="button"  id="submit" value="Nuevo Ticket" onClick="$('#divticket').toggle(); IniciarCrono()">
-<input type="submit" value="Exportar a excel" id="submit" onclick="exportar();">
-</fieldset>
--->
-
-<TABLE>
-<TR>
-<TD>
-<h1>
-USUARIOS ATENDIDOS DE SERVICIO GRATUITO
-</h1>
-</TD>
-</TR>
-</TABLE>
-
-<BR>
-
-<input type="button" id="submit" value="Nuevo Ticket" onclick="window.open('tickets.php', '1', 'width=450,height=600,toolbar=no,location=no,directories=no,status=no,menubar=no,resizable=no'); return false;">
-<input type="button"  id="submit" value="Nueva Llamada" onclick="window.open('llamadas.php' , '2' , 'width=450,height=600,left=450,toolbar=no,location=no,directories=no,status=no,menubar=no,resizable=no'); return false;">
-<input type="button"  id="submit" value="Nuevo Chat" onclick="window.open('chats.php', '', 'width=450,height=600,left=900,toolbar=no,location=no,directories=no,status=no,menubar=no,resizable=no'); return false;">
-<input type="submit" value="Exportar a excel" id="submit" onclick="exportar();">
-
-
-
-<!--
-toolbar=no,location=no,directories=no,status=no,menubar=no,resizable=no
-
-toolbar=[yes|no] – Muestra u oculta la barra de herramientas del navegador
-location=[yes|no] – Muestra u oculta la barra de direcciones del navegador
-directories=[yes|no] – Muestra u oculta una barra de favoritos
-status=[yes|no] – Muestra u oculta la barra de estado del navegador
-menubar=[yes|no] – Muestra u oculta la barra de menús (arhivo – editar, etc…)
-scrollbars=[yes|no] – Muestra u oculta las barras de desplazamiento
-resizable=[yes|no] – Define si la ventana podrá ser redimensionada una vez creada
-width=XXX – Define el ancho de la ventana en pixeles, ejemplo: width=600
-height=XXX – Define el alto de la ventana en pixeles, ejemplo: height=400
-left=XX – Define a cuantos pixeles del lado izquierdo de la pantalla se generará la ventana
-top=XX – Define a cuantos pixeles desde la parte de arriba de la pantalla se generará la ventana
--->
-
-
-<div id="divticket" style="display:none">
-<form name="crono">
-<input type="text" size="8" name="display" value="00:00:0"> 
-</form>
-
-<?php
-include('php/formulario.php');
-	?>
-
-</div>
 
 <form action="php/ficheroExcel.php" method="post" target="_blank" id="FormularioExportacion">
 <input type="hidden" id="datos_a_enviar" name="datos_a_enviar" />
@@ -90,48 +15,27 @@ include('php/formulario.php');
 
 
 
-
-require_once('php/conectcuboreps.php');	
-
+// $selectreporteglobal = "SELECT id , fecha , hora , ticket , evento , rfc , razon_social , usuario , producto , plan , asunto , nivel_atencion , duracion , transferida , status_ticket , comentarios , reporteglobal.ip , ip_asesores.nombre FROM reporteglobal LEFT JOIN ip_asesores ON reporteglobal.ip = ip_asesores.ip WHERE fecha >= SUBDATE(CURDATE(), INTERVAL 2 DAY) ORDER BY id ASC LIMIT 10  ";
 @$ipuser = $_SERVER['REMOTE_ADDR'];
+@$date1 = $_POST['date1'];
+@$date2 = $_POST['date2'];
 
-$select = "SELECT * FROM reporteglobal where producto='GRATUITO' ORDER BY id DESC";
-$resultado = mysql_query($select);
-$campos = mysql_num_fields($resultado);
-$filas = mysql_num_rows($resultado);
-
-echo<<<formulario
-<div id="Reporte">
-<table id="Exportar_a_Excel">
-<tr>
-
-formulario;
-
-for ($i = 0;$i < $campos;$i++) 
-{$nombrecampo = mysql_field_name($resultado, $i);
-echo "<th>$nombrecampo</th>";}
-
-echo "</tr>"; // Cerrar fila
-
-while ($row = mysql_fetch_assoc($resultado)) 
-{echo "<tr>"; // Crear fila
-
-foreach ($row as $key => $value) {
-echo "<td style='width:auto'>$value&nbsp;</td>";} 
-echo "</tr>"; // Cerrar fila
+if(isset($date1) && isset($date2) && !empty($date1) && !empty($date2) && $date1 != 'fecha inicial' && $date2 != 'fecha final' )
+{
+require_once('php/querys.php');
+reportedinamico($reporteGlobalGratuitos);	
 }
-
-mysql_close($server);
-
+else{
+@$date1 = "";
+@$date2 = date("Y-m-d");
+require_once('php/querys.php');
+reportedinamico($reporteGlobalGratuitos);
+} 
 
 
 ?>
-</table>
+
 </form>
-
-
-
-
 </body>
 </html>
 

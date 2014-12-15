@@ -1,5 +1,5 @@
 <?php
-$title = "Por Asesor";
+$title = "Oficinas comerciales";
 date_default_timezone_set("America/Monterrey");
 require_once('php/funciones.php');
 require_once('header.php');
@@ -18,13 +18,13 @@ require_once('header.php');
 if(isset($date1) && isset($date2) && !empty($date1) && !empty($date2) && $date1 != 'fecha inicial' && $date2 != 'fecha final' )
 {
 require_once('php/querys.php');	
-reporteDinamico($reporteGlobalAsesor);	
+reporteDinamico($repOfComerciales);	
 }
 else{
 @$date1 = date("Y-m-d");
 @$date2 = date("Y-m-d");
 require_once('php/querys.php');
-reporteDinamico($reporteGlobalAsesor);
+reporteDinamico($repOfComerciales);
 } 
 
 ?>

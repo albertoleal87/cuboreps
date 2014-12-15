@@ -1,26 +1,31 @@
-* {padding: 0; margin: 0}
+* {padding: 0; margin: 0; font-family: verdana;}
 
-html {background-color:444444; padding-top: 10px ; color:#FFF }
+html {background-color:#DDD; color:#black ;}
 
-td {padding: 2px; font-size: 11px  ; color:#FFF ;font-weight: bold ; font-family: verdana;    }
+th {padding: 2px; font-size: 14px  ; color:#DDD ; background-color:#555 ; font-weight: bold ; font-family: verdana;    }
 
-th {padding: 2px; font-size: 14px  ; color:#444444 ; background-color:#FFF ; font-weight: bold ; font-family: verdana;    }
+h1{ color:#555}
 
-
-#textarea {vertical-align: top  ; padding-top: 8px}
+td {padding: 2px; font-size: 11px  ; color:#555 ;font-weight: bold ; font-family: verdana;}
 	
-input , select {background-color:#FFF; padding: 4px; width: 250px; font-size: 15px; font-weight: bold; margin: 3px; color:#555555 ; text-align: center; border-radius: 79px ;
+input , select {background-color:#FFF; padding: 4px; width: 250px; font-size: 15px; font-weight: bold; margin: 2px; color:#555 ; text-align: center; -webkit-appearance:button ; border-radius: 79px ;
 -moz-border-radius: 79px ;
 -webkit-border-radius: 79px ;
-border: 1px solid #AAAAAA; text-align: left;}
+border: 1px solid #AAA; text-align: left;}
 
-textarea {background-color:#FFFFFF; color:#333333 ; width: 250px ; margin: 2px;  height: 60px ;padding: 2px; font-size: 13px  ; font-weight: bold ; font-family: verdana; 
+select {background-image: url(flechita.png);
+   background-position: center right;
+   background-repeat: no-repeat;}
+
+textarea {background-color:#FFF; color:#555 ; width: 250px ; margin: 2px;  height: 60px ;padding: 2px; font-size: 13px  ; font-weight: bold ; font-family: verdana; 
 	border-radius: 10px ;
 -moz-border-radius: 10px ;
 -webkit-border-radius: 10px ;
-border: 1px solid #AAAAAA;}
+border: 1px solid #AAA;}
 
-#submit {background: #f85032;
+/*GRADIENTES BOTONES*/
+#submit {
+background: #f85032;
 background: -moz-linear-gradient(top, #f85032 0%, #f85032 46%, #e73827 69%, #e73827 100%);
 background: -webkit-gradient(left top, left bottom, color-stop(0%, #f85032), color-stop(46%, #f85032), color-stop(69%, #e73827), color-stop(100%, #e73827));
 background: -webkit-linear-gradient(top, #f85032 0%, #f85032 46%, #e73827 69%, #e73827 100%);
@@ -28,11 +33,33 @@ background: -o-linear-gradient(top, #f85032 0%, #f85032 46%, #e73827 69%, #e7382
 background: -ms-linear-gradient(top, #f85032 0%, #f85032 46%, #e73827 69%, #e73827 100%);
 background: linear-gradient(to bottom, #f85032 0%, #f85032 46%, #e73827 69%, #e73827 100%);
 filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f85032', endColorstr='#e73827', GradientType=0 );}
+/*GRADIENTES BOTONES*/
 
-#submit {border: 1px solid #FF3333; text-align: center; width:150px;}
-
-#submit:hover {background: #FF1111; color:#FFF ; }
-
+#submit {border: 1px solid #F33; text-align: center; width:150px; color:#DDD}
+#textarea {vertical-align: top  ; padding-top: 8px}
 #Exportar_a_Excel {text-align: center}
+#reloj, #date1 , #date2 {width:150px;  text-align: center ; background: #DDD; color:#555 ; ;}
 
-#reloj, #date1 , #date2 {width:150px;  text-align: center}
+#submit:hover {background:#F11; color:#555 ; }
+#reloj:hover, #date1:hover , #date2:hover  {background: #FFF; color:#000 ;}
+
+#submit:active {background: #E11; color:#222 ; }
+
+a {color:#555}
+a:hover {color:#000}
+
+#lupa {background-image: url(lupa1.png) ;
+   background-position: center;
+   background-repeat: no-repeat;
+   background-size:85% 85%;
+    width:30px; background-color:#DDD ;}
+
+#excel {background-image: url(excel-8.png) ;
+   background-position: center;
+   background-repeat: no-repeat;
+   background-size:110% 110%;
+    width:30px; background-color:#DDD ;}
+
+#lupa:hover , #excel:hover {background-color:#FFF}
+
+#reloj:active, #date1:active , #date2:active , #lupa:active , #excel:active {border:2px }
